@@ -9,6 +9,8 @@ import {
   Subregion,
 } from './types'
 import Fuse from 'fuse.js'
+// @ts-ignore
+import { getCityPinyin } from './CityPinyinMap'
 
 const imageJsonUrl =
   'https://xcarpentier.github.io/react-native-country-picker-modal/countries/'
@@ -212,12 +214,16 @@ export const search = (
 }
 const uniq = (arr: any[]) => Array.from(new Set(arr))
 
-export const getLetters = (countries: Country[]) => {
+export const getLetters = (countries: Country[],   translation: TranslationLanguageCode = 'common',
+) => {
   return uniq(
     countries
-      .map((country: Country) =>
-        (country.name as string).substr(0, 1).toLocaleUpperCase(),
-      )
+      .map((country: Country) => {
+        if (translation === 'zho') {
+          return getCityPinyin(country)
+      }
+        return (country.name as string).substr(0, 1).toLocaleUpperCase()
+      })
       .sort((l1: string, l2: string) => l1.localeCompare(l2)),
   )
 }

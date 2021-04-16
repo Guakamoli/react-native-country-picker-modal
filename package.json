@@ -49,12 +49,14 @@
     "fuse.js": "3.4.5",
     "modal-react-native-web": "0.2.0",
     "node-emoji": "1.10.0",
+    "pinyin": "^2.10.2",
     "prop-types": "15.7.2",
     "react-async-hook": "3.6.1"
   },
   "devDependencies": {
     "@types/jest": "24.0.17",
     "@types/node-emoji": "1.8.1",
+    "@types/pinyin": "^2.8.2",
     "@types/prop-types": "15.7.3",
     "@types/react": "16.9.4",
     "@types/react-native": "0.60.17",

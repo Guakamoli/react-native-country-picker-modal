@@ -10,12 +10,14 @@ import {
   FlatListProps,
   Dimensions,
 } from 'react-native'
+
 import { useTheme } from './CountryTheme'
-import { Country, Omit } from './types'
+import { Country, Omit, TranslationLanguageCode } from './types'
 import { Flag } from './Flag'
 import { useContext } from './CountryContext'
 import { CountryText } from './CountryText'
-
+import { getCityPinyin } from './CityPinyinMap'
+// @ts-ignore
 const borderBottomWidth = 2 / PixelRatio.get()
 
 const styles = StyleSheet.create({
@@ -154,6 +156,8 @@ interface CountryListProps {
   withCallingCode?: boolean
   withCurrency?: boolean
   flatListProps?: FlatListProps<Country>
+  translation?: TranslationLanguageCode
+
   onSelect(country: Country): void
 }
 
@@ -180,13 +184,19 @@ export const CountryList = (props: CountryListProps) => {
     filter,
     flatListProps,
     filterFocus,
+    translation,
   } = props
 
   const flatListRef = useRef<FlatList<Country>>(null)
   const [letter, setLetter] = useState<string>('')
   const { itemHeight, backgroundColor } = useTheme()
   const indexLetter = data
-    .map((country: Country) => (country.name as string).substr(0, 1))
+    .map((country: Country) => {
+      if (translation === 'zho') {
+        return getCityPinyin(country)
+      }
+      return (country.name as string).substr(0, 1)
+    })
     .join('')
 
   const scrollTo = (letter: string, animated: boolean = true) => {
@@ -207,7 +217,7 @@ export const CountryList = (props: CountryListProps) => {
     }
   }
   const { search, getLetters } = useContext()
-  const letters = getLetters(data)
+  const letters = getLetters(data, translation)
   useEffect(() => {
     if (data && data.length > 0 && filterFocus && !filter) {
       scrollTo(letters[0], false)
@@ -250,7 +260,7 @@ export const CountryList = (props: CountryListProps) => {
           contentContainerStyle={styles.letters}
           keyboardShouldPersistTaps='always'
         >
-          {letters.map((letter) => (
+          {letters.map(letter => (
             <Letter key={letter} {...{ letter, scrollTo }} />
           ))}
         </ScrollView>

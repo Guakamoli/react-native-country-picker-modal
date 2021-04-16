@@ -176,10 +176,12 @@ export const CountryPicker = (props: CountryPickerProps) => {
       preferredCountries,
       withAlphaFilter,
     )
-      .then(countries => cancel ? null : setCountries(countries))
+      .then(countries => (cancel ? null : setCountries(countries)))
       .catch(console.warn)
-    
-    return () => cancel = true
+
+    return () => {
+      cancel = true
+    }
   }, [translation, withEmoji])
 
   return (
@@ -225,6 +227,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
             filter,
             filterFocus,
             flatListProps,
+            translation,
           }}
         />
       </CountryModal>

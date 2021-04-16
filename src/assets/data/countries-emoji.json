@@ -1276,7 +1276,8 @@
       "est": "Hiina",
       "pol": "Chiny",
       "urd": "چین",
-      "kor": "중국"
+      "kor": "중국",
+      "zho": "中国"
     }
   },
   "CX": {
@@ -2698,7 +2699,8 @@
       "est": "Hongkong",
       "pol": "Hongkong",
       "urd": "ہانگ کانگ",
-      "kor": "홍콩"
+      "kor": "홍콩",
+      "zho": "香港"
     }
   },
   "HU": {
@@ -3533,7 +3535,9 @@
       "est": "Macau",
       "pol": "Makau",
       "urd": "مکاؤ",
-      "kor": "마카오"
+      "kor": "마카오",
+      "zho": "澳门"
+
     }
   },
   "MK": {
@@ -5423,7 +5427,9 @@
       "est": "Singapur",
       "pol": "Singapur",
       "urd": "سنگاپور",
-      "kor": "싱가포르"
+      "kor": "싱가포르",
+      "zho": "新加坡"
+
     }
   },
   "SX": {
@@ -5935,7 +5941,9 @@
       "est": "Taiwan",
       "pol": "Tajwan",
       "urd": "تائیوان",
-      "kor": "대만"
+      "kor": "대만",
+      "zho": "台湾"
+
     }
   },
   "TJ": {
